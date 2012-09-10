@@ -7,6 +7,7 @@
 #include "TextureManager.h"
 #include "FontManager.h"
 #include <map>
+#include <memory>
 
 class SFMLApp
 {
@@ -22,7 +23,7 @@ public:
     void OnRender(void);
     void OnCleanup(void);
 
-	void registerState(GameStateBase* gameState, std::string stateID);
+	void registerState(GameStateBase::ptr gameState, std::string stateID);
 	void unregisterState(std::string stateID); //can invalidate active states
 	//void changeState(GameStateBase* gameState);
 	void changeState(std::string stateID); //replaces the current state
@@ -31,13 +32,6 @@ public:
 	void removeState(std::string stateID);
 
 	GameStateBase* getState(std::string stateID);
-
-	//override virtuals
-	/*
-	void OnClose(void);
-	void OnKeyPressed(sf::Keyboard::Code code, bool alt, bool control, bool shift);
-	void OnKeyReleased(sf::Keyboard::Code code, bool alt, bool control, bool shift);
-	*/
 
 	//message handling functions
 	void decipherMessage(SFMLStateMessage* message);
@@ -48,6 +42,6 @@ private:
 	bool m_running;
 	sf::RenderWindow m_mainWindow;
 	std::vector<GameStateBase*> m_states;
-	std::map<std::string, GameStateBase*> m_registeredGameStates;
+	std::map<std::string, GameStateBase::ptr> m_registeredGameStates;
 };
 

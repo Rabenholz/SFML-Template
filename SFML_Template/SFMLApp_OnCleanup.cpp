@@ -8,11 +8,6 @@ void SFMLApp::OnCleanup(void)
 		(*stateIt)->OnCleanup();
 	}
 	m_states.clear();
-	for(std::map<std::string, GameStateBase*>::iterator stateIt(m_registeredGameStates.begin());
-		stateIt != m_registeredGameStates.end(); stateIt++)
-	{
-		delete stateIt->second;
-	}
 	m_registeredGameStates.clear();
 	ImageManager::cleanup();
 	TextureManager::cleanup();

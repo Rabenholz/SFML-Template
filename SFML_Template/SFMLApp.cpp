@@ -36,22 +36,26 @@ int SFMLApp::OnExecute(void)
 	return 0;
 }
 
-void SFMLApp::registerState(GameStateBase* gameState, std::string stateID)
+void SFMLApp::registerState(std::unique_ptr<GameStateBase> gameState, std::string stateID)
 {
-	m_registeredGameStates[stateID] = gameState;
+	if(m_registeredGameStates.size() > 0 && m_registeredGameStates.find(stateID) != m_registeredGameStates.end())
+	{
+		printf("GAMESTATE \"%s\" ALREADY REGISTERED\n", stateID);
+		return;
+	}
+	m_registeredGameStates[stateID] = std::move(gameState);
 }
 
 void SFMLApp::unregisterState(std::string stateID)
 {
-	std::map<std::string, GameStateBase*>::iterator stateIt(m_registeredGameStates.find(stateID));
+	std::map<std::string, GameStateBase::ptr>::iterator stateIt(m_registeredGameStates.find(stateID));
 	if(stateIt != m_registeredGameStates.end())
 	{
-		delete stateIt->second;
 		m_registeredGameStates.erase(stateIt);
 	}
 	else
 	{
-		printf("STATE %s NOT FOUND", stateID);
+		printf("STATE \"%s\" NOT FOUND", stateID);
 	}
 }
 
@@ -99,9 +103,9 @@ void SFMLApp::removeState(std::string stateID)
 
 GameStateBase* SFMLApp::getState(std::string stateID)
 {
-	std::map<std::string, GameStateBase*>::iterator stateIt(m_registeredGameStates.find(stateID));
+	std::map<std::string, GameStateBase::ptr>::iterator stateIt(m_registeredGameStates.find(stateID));
 	if(stateIt != m_registeredGameStates.end())
-		return stateIt->second;
+		return stateIt->second.get();
 	else
 	{
 		printf("STATE %s NOT FOUND", stateID);

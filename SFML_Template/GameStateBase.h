@@ -12,12 +12,15 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <vector>
+#include <memory>
 
 #define MAX_MEMBERFUNCTORS 32
 
 class GameStateBase : public SFMLEvent
 {
 public:
+	typedef std::unique_ptr<GameStateBase> ptr;
+
 	GameStateBase(void);
 	virtual ~GameStateBase(void);
 
