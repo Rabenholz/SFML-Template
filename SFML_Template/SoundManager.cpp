@@ -59,7 +59,7 @@ bool SoundManager::addSoundBufferFromFile(const std::string& fileName, const std
 	{
 		if(!addSoundBuffer(soundBuffer, soundBufferID))
 		{
-			printf("Failed to add bro.wma to manager\n");
+			printf("Failed to add \"%s\" to manager\n", fileName);
 			delete soundBuffer;
 			return false;
 		}
