@@ -81,9 +81,6 @@
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Functor.h" />
     <ClInclude Include="GameStateBase.h" />
-    <ClInclude Include="GameState_Game1.h" />
-    <ClInclude Include="GameState_PauseMenu.h" />
-    <ClInclude Include="GameState_StartMenu.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="SFMLApp.h" />
     <ClInclude Include="SFMLButton.h" />
@@ -99,9 +96,6 @@
     <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameStateBase.cpp" />
-    <ClCompile Include="GameState_Game1.cpp" />
-    <ClCompile Include="GameState_PauseMenu.cpp" />
-    <ClCompile Include="GameState_StartMenu.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="SFMLApp.cpp" />
     <ClCompile Include="SFMLApp_OnCleanup.cpp" />

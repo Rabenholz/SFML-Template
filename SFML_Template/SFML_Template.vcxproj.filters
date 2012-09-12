@@ -42,15 +42,6 @@
     <ClInclude Include="SFMLStateMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameState_Game1.h">
-      <Filter>Header Files\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState_PauseMenu.h">
-      <Filter>Header Files\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState_StartMenu.h">
-      <Filter>Header Files\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="GameStateBase.h">
       <Filter>Header Files\GameStates</Filter>
     </ClInclude>
@@ -106,15 +97,6 @@
     </ClCompile>
     <ClCompile Include="SFMLApp_OnUpdate.cpp">
       <Filter>Source Files\SFMLApp Implementation</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState_Game1.cpp">
-      <Filter>Source Files\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState_PauseMenu.cpp">
-      <Filter>Source Files\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState_StartMenu.cpp">
-      <Filter>Source Files\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="GameStateBase.cpp">
       <Filter>Source Files\GameStates</Filter>
