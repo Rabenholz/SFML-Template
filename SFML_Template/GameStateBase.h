@@ -14,7 +14,6 @@
 #include <vector>
 #include <memory>
 
-#define MAX_MEMBERFUNCTORS 32
 
 class GameStateBase : public SFMLEvent
 {

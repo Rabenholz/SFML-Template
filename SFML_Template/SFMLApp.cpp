@@ -117,40 +117,40 @@ void SFMLApp::decipherMessage(SFMLStateMessage* message)
 {
 	switch(message->getType())
 	{
-	case None:
+	case SFMLStateMessage::Type::None:
 		{
 		break;
 		}
-	case Close:
+	case SFMLStateMessage::Type::Close:
 		{
 		OnClose();
 		break;
 		}
-	case Resize:
+	case SFMLStateMessage::Type::Resize:
 		{
 		SFMLStateMessage_Resize* msg = dynamic_cast<SFMLStateMessage_Resize*>(message);
 		OnResize(msg->m_width, msg->m_height);
 		break;
 		}
-	case ChangeState:
+	case SFMLStateMessage::Type::ChangeState:
 		{
 		SFMLStateMessage_ChangeState* msg = dynamic_cast<SFMLStateMessage_ChangeState*>(message);
 		changeState(msg->m_stateID);
 		break;
 		}
-	case PushState:
+	case SFMLStateMessage::Type::PushState:
 		{
 		SFMLStateMessage_PushState* msg = dynamic_cast<SFMLStateMessage_PushState*>(message);
 		pushState(msg->m_stateID);
 		break;
 		}
-	case PopState:
+	case SFMLStateMessage::Type::PopState:
 		{
 		SFMLStateMessage_PopState* msg = dynamic_cast<SFMLStateMessage_PopState*>(message);
 		popState();
 		break;
 		}
-	case RemoveState:
+	case SFMLStateMessage::Type::RemoveState:
 		{
 		SFMLStateMessage_RemoveState* msg = dynamic_cast<SFMLStateMessage_RemoveState*>(message);
 		removeState(msg->m_stateID);

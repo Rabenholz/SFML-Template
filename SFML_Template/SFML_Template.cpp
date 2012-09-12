@@ -25,11 +25,9 @@ int main(int argc, _TCHAR* argv[])
 	//_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 	//_CrtMemState s1, s2, s3;
 	//_CrtMemCheckpoint( &s1 );
-	//_CrtSetBreakAlloc(164);
-	//_CrtSetBreakAlloc(150);
 	{
-	SFMLApp app;
-	app.OnExecute();
+		SFMLApp app;
+		app.OnExecute();
 	}
 
 	//_CrtMemCheckpoint( &s2 );

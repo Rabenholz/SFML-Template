@@ -1,42 +1,47 @@
 #pragma once
 #include <SFML/Window.hpp>
 
-enum SFMLStateMessageType
-{
-	None = 0,
-	Close,
-	Resize,
-	ChangeState,
-	PushState,
-	PopState,
-	RemoveState,
-	TypeCount
-};
-
 class SFMLStateMessage
 {
+public:
+	struct Type
+	{
+		enum E
+		{
+			None = 0,
+			Close,
+			Resize,
+			ChangeState,
+			PushState,
+			PopState,
+			RemoveState,
+			Count
+		};
+	};
 protected:
 	//SFMLStateMessage():m_type(None) {}
-	SFMLStateMessage(SFMLStateMessageType type):type(type) {}
+	SFMLStateMessage(SFMLStateMessage::Type::E type):type(type) {}
 public:
 	virtual ~SFMLStateMessage(void) {}
-	const SFMLStateMessageType getType(void) {return type;}
+	const SFMLStateMessage::Type::E getType(void) {return type;}
 
 private:
-	const SFMLStateMessageType type;
+	const SFMLStateMessage::Type::E type;
 };
 
 class SFMLStateMessage_Close : public SFMLStateMessage
 {
 public:
-	SFMLStateMessage_Close(void):SFMLStateMessage(Close) {}
+	SFMLStateMessage_Close(void)
+		:SFMLStateMessage(SFMLStateMessage::Type::Close) {}
 	virtual ~SFMLStateMessage_Close(void) {}
 };
 
 class SFMLStateMessage_Resize : public SFMLStateMessage
 {
 public:
-	SFMLStateMessage_Resize(int width, int height):SFMLStateMessage(Resize), m_width(width), m_height(height) {}
+	SFMLStateMessage_Resize(int width, int height)
+		:SFMLStateMessage(SFMLStateMessage::Type::Resize), m_width(width), m_height(height) {}
 	virtual ~SFMLStateMessage_Resize(void) {}
 	int m_width;
 	int m_height;
@@ -45,7 +50,8 @@ public:
 class SFMLStateMessage_ChangeState : public SFMLStateMessage
 {
 public:
-	SFMLStateMessage_ChangeState(std::string stateIdentifier):SFMLStateMessage(ChangeState), m_stateID(stateIdentifier) {}
+	SFMLStateMessage_ChangeState(std::string stateIdentifier)
+		:SFMLStateMessage(SFMLStateMessage::Type::ChangeState), m_stateID(stateIdentifier) {}
 	virtual ~SFMLStateMessage_ChangeState(void) {}
 	std::string m_stateID;
 };
@@ -53,7 +59,8 @@ public:
 class SFMLStateMessage_PushState : public SFMLStateMessage
 {
 public:
-	SFMLStateMessage_PushState(std::string stateIdentifier):SFMLStateMessage(PushState), m_stateID(stateIdentifier) {}
+	SFMLStateMessage_PushState(std::string stateIdentifier)
+		:SFMLStateMessage(SFMLStateMessage::Type::PushState), m_stateID(stateIdentifier) {}
 	virtual ~SFMLStateMessage_PushState(void) {}
 	std::string m_stateID;
 };
@@ -61,14 +68,16 @@ public:
 class SFMLStateMessage_PopState : public SFMLStateMessage
 {
 public:
-	SFMLStateMessage_PopState(void):SFMLStateMessage(PopState){}
+	SFMLStateMessage_PopState(void)
+		:SFMLStateMessage(SFMLStateMessage::Type::PopState){}
 	virtual ~SFMLStateMessage_PopState(void) {}
 };
 
 class SFMLStateMessage_RemoveState : public SFMLStateMessage
 {
 public:
-	SFMLStateMessage_RemoveState(std::string stateIdentifier):SFMLStateMessage(RemoveState), m_stateID(stateIdentifier) {}
+	SFMLStateMessage_RemoveState(std::string stateIdentifier)
+		:SFMLStateMessage(SFMLStateMessage::Type::RemoveState), m_stateID(stateIdentifier) {}
 	virtual ~SFMLStateMessage_RemoveState(void) {}
 	std::string m_stateID;
 };
