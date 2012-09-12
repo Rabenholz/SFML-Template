@@ -46,26 +46,23 @@ public:
 
 	const std::vector<sf::Drawable*>& GetDisplayList(void);
 
-	enum MouseEvent
+	struct MouseEvent
 	{
-		mouseLeftPressed = 0,
-		mouseLeftReleased,
-		mouseRightPressed,
-		mouseRightReleased,
-		mouseMiddlePressed,
-		mouseMiddleReleased,
-		mouseRollOver,
-		mouseRollOut,
-		mouseHover,
-		MOUSEEVENTCOUNT
+		enum E
+		{
+			LeftPressed = 0,
+			LeftReleased,
+			RightPressed,
+			RightReleased,
+			MiddlePressed,
+			MiddleReleased,
+			RollOver,
+			RollOut,
+			Hover,
+			Count
+		};
 	};
 
-	//when you bind a function to a button if it's a class method, it MUST BE STATIC
-	//void RegisterMouseListener(sf::Sprite* target, MouseEvent mouseEvent, eventFunction func);
-	//void UnregisterMouseListener(sf::Sprite* target, MouseEvent mouseEvent, eventFunction func);
-
-	//void CreateButton(const sf::Image& imagePressed, const sf::Image& imageUnpressed, const sf::Vector2f& position,
-	//					eventFunction releasedFunc);
 	void addGUIElement(SFMLGUIElement* target); //must be used so mouse listeners work
 	void removeGUIElement(SFMLGUIElement* target);
 
