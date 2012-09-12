@@ -6,6 +6,7 @@
 #include "SoundManager.h"
 #include "TextureManager.h"
 #include "FontManager.h"
+#include "SpriteManager.h"
 #include <map>
 #include <memory>
 

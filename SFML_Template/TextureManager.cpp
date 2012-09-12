@@ -26,6 +26,7 @@ TextureManager& TextureManager::getInstance(void)
 			sf::Image image;
 			image.create(64,64,sf::Color::Magenta);
 			s_TextureNotFound->loadFromImage(image);
+			s_TextureManager->addTexture(s_TextureNotFound,"TEXTURENOTFOUND");
 		}
 	}
 	return *s_TextureManager;
@@ -109,9 +110,5 @@ void TextureManager::cleanup(void)
 		delete s_TextureManager;
 		s_TextureManager = NULL;
 	}
-	if(s_TextureNotFound != NULL)
-	{
-		delete s_TextureNotFound;
-		s_TextureNotFound = NULL;
-	}
+	s_TextureNotFound = NULL;
 }

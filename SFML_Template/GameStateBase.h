@@ -2,6 +2,7 @@
 #include "SFMLEvent.h"
 #include "SFMLStateMessage.h"
 #include "ImageManager.h"
+#include "SpriteManager.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
 #include "FontManager.h"

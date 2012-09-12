@@ -25,12 +25,13 @@ void GameState_StartMenu::OnAwake(void)
 	rect->setOutlineThickness(5.0f);
 	rect->setOutlineColor(sf::Color::Blue);
 	addDrawable(std::move(rect));
-	std::unique_ptr<sf::Sprite> sprite(new sf::Sprite(TextureManager::getInstance().getTexture("testImage")));
-	sprite->setPosition(sf::Vector2f(200.0f, 200.0f));
+	std::unique_ptr<sf::Sprite> sprite(new sf::Sprite(SpriteManager::getInstance().getSprite("testImage")));
+	sprite->setTextureRect(sf::IntRect(40,40,80,80));
+	sprite->setPosition(sf::Vector2f(100.0f, 300.0f));
 	addDrawable(std::move(sprite));
 	std::unique_ptr<SFMLButton> button(new SFMLButton());
 	button->setPosition(sf::Vector2f(200.0f, 200.0f));
-	sf::Sprite unpressedSprite(TextureManager::getInstance().getTexture("TicTacToeX"));
+	sf::Sprite unpressedSprite(SpriteManager::getInstance().getSprite("TicTacToeX_Cut"));
 	sf::Sprite pressedSprite(TextureManager::getInstance().getTexture("TicTacToeO"));
 	button->setUnpressedSprite(unpressedSprite);
 	button->setPressedSprite(pressedSprite);

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "SFMLApp.h"
 
-#include "ImageManager.h"
 #include "GameState_StartMenu.h"
 #include "GameState_Game1.h"
 #include "GameState_PauseMenu.h"
@@ -18,6 +17,10 @@ bool SFMLApp::OnInit(void)
 	textureManager.addTextureFromFile("boyRunning1.png", "boyRunning1");
 	textureManager.addTextureFromFile("boyRunning2.png", "boyRunning2");
 	textureManager.addTextureFromFile("boyRunning3.png", "boyRunning3");
+
+	SpriteManager& spriteManager = SpriteManager::getInstance();
+	spriteManager.addSprite(sf::Sprite(textureManager.getTexture("testImage")),"testImage");
+	spriteManager.addSprite(sf::Sprite(textureManager.getTexture("TicTacToeX"),sf::IntRect(30,30,60,60)),"TicTacToeX_Cut");
 
 	SoundManager& soundManager = SoundManager::getInstance();
 	soundManager.addSoundBufferFromFile("bro.wav", "bro");
