@@ -26,8 +26,7 @@ public:
 	virtual void OnAwake(void) {}
 	virtual void OnUpdate(void) {}
 	virtual void OnRender(sf::RenderTarget& target) {drawDisplayList(target);}
-	virtual void OnCleanup(void) {CleanupGUIElements();
-									CleanupDisplayList();}
+	virtual void OnCleanup(void) {Cleanup();}
 	virtual void OnSuspend(void) {}
 	virtual void OnResume(void) {}
 
@@ -43,8 +42,6 @@ public:
 	//default events that most likely won't be overwritten
 	virtual void OnClose(void);
 	virtual void OnResize(int width, int height);
-
-	const std::vector<sf::Drawable*>& GetDisplayList(void);
 
 	struct MouseEvent
 	{
@@ -63,7 +60,9 @@ public:
 		};
 	};
 
-	void addGUIElement(SFMLGUIElement* target); //must be used so mouse listeners work
+	void addDrawable(std::unique_ptr<sf::Drawable> target);
+	void removeDrawable(int index);
+	void addGUIElement(std::unique_ptr<SFMLGUIElement> target); //must be used so mouse listeners work
 	void removeGUIElement(SFMLGUIElement* target);
 
 	SFMLGUIElement* getTopGUIElement(int X, int Y);
@@ -75,20 +74,18 @@ public:
 	void MouseEvent_Released(sf::Mouse::Button button, int x, int y);
 	void MouseEvent_Moved(sf::Mouse::Button button, int x, int y);
 
-	//this function is usually called by derived classes in their OnCleanup function to clear out the display list
-	void CleanupDisplayList(void);
+	void Cleanup();
 
+	//this function is usually called by derived classes in their OnCleanup function to clear out the display list
+private:
+	void CleanupDisplayList(void);
 	void CleanupGUIElements(void);
-	//if the derived class uses mouseListeners you should call this one too
-	//void CleanupMouseListeners(void);
 
 protected:
 	std::vector<SFMLStateMessage*> m_messages;
-	std::vector<sf::Drawable*> m_displayList;
+private:
+	std::vector<std::unique_ptr<sf::Drawable>> m_displayList;
 	std::vector<SFMLGUIElement*> m_GUIElements;
-	//temp for test
-public:
-	//std::vector<std::pair<sf::Sprite*,eventFunction>> m_mouseListeners[MOUSEEVENTCOUNT];
 public:
 	bool m_transparent;
 	bool m_allowSubUpdate;
@@ -96,4 +93,6 @@ public:
 	bool m_subRender;
 protected:
 	void drawDisplayList(sf::RenderTarget& target) const;
+	const std::vector<std::unique_ptr<sf::Drawable>>& getDisplayList() const;
+	const std::vector<SFMLGUIElement*>& getGUIElements() const;
 };

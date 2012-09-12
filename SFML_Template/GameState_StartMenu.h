@@ -22,9 +22,9 @@ public:
 	void incrementByOne(void) {counter++; printf("Counter is now at %d\n",counter);}
 	void playBroSound(void){printf("Play sound\n");bro.play();}
 	void pauseAnim(void) {anim->Pause();}
-	void playAnim(void) {anim->Play();}
+	void playAnim(void) {anim->Play();printf("PlayAnim\n");}
 	void stopAnim(void) {anim->Stop();}
-	void resetAnim(void) {anim->Reset();}
+	void resetAnim(void) {anim->Reset();printf("ResetAnim\n");}
 	void nextFrameAnim(void) {anim->NextFrame();}
 	void prevFrameAnim(void) {anim->PreviousFrame();}
 	void gotoFrame1(void) {anim->GotoFrame(1);}

@@ -17,7 +17,7 @@ GameStateBase::~GameStateBase(void)
 
 void GameStateBase::drawDisplayList(sf::RenderTarget& target) const
 {
-	for(std::vector<sf::Drawable*>::const_iterator dispIt(m_displayList.begin());
+	for(std::vector<std::unique_ptr<sf::Drawable>>::const_iterator dispIt(m_displayList.begin());
 		dispIt != m_displayList.end(); dispIt++)
 	{
 		target.draw(**dispIt);
@@ -48,26 +48,27 @@ SFMLStateMessage* GameStateBase::GetStateMessage(void)
 	return retVal;
 }
 
-const std::vector<sf::Drawable*>& GameStateBase::GetDisplayList(void)
-{
-	return m_displayList;
-}
-
 void GameStateBase::CleanupDisplayList(void)
 {
-	for(std::vector<sf::Drawable*>::iterator dispIt(m_displayList.begin()); dispIt != m_displayList.end(); dispIt++)
-	{
-		delete (*dispIt);
-	}
 	m_displayList.clear();
 }
 
-void GameStateBase::addGUIElement(SFMLGUIElement* target)
+void GameStateBase::addDrawable(std::unique_ptr<sf::Drawable> target)
 {
-	if(target == NULL)
+	m_displayList.push_back(std::move(target));
+}
+
+void GameStateBase::removeDrawable(int index)
+{
+	m_displayList.erase(m_displayList.begin() + index);
+}
+
+void GameStateBase::addGUIElement(std::unique_ptr<SFMLGUIElement> target)
+{
+	if(!target)
 		return;
-	m_GUIElements.push_back(target);
-	m_displayList.push_back(target);
+	m_GUIElements.push_back(target.get());
+	m_displayList.push_back(std::move(target));
 }
 
 void GameStateBase::removeGUIElement(SFMLGUIElement* target)
@@ -75,10 +76,10 @@ void GameStateBase::removeGUIElement(SFMLGUIElement* target)
 	std::vector<SFMLGUIElement*>::iterator guiIt(std::find(m_GUIElements.begin(), m_GUIElements.end(), target));
 	if(guiIt != m_GUIElements.end())
 	{
-		delete *guiIt;
 		m_GUIElements.erase(guiIt);
 		
-		std::vector<sf::Drawable*>::iterator dispIt(std::find(m_displayList.begin(), m_displayList.end(), target));
+		std::vector<std::unique_ptr<sf::Drawable>>::iterator dispIt(std::find_if(m_displayList.begin(), m_displayList.end(),
+			[&](const std::unique_ptr<sf::Drawable>& drawable) {return drawable.get() == target;}));
 		if(dispIt != m_displayList.end())
 			m_displayList.erase(dispIt);
 	}
@@ -94,7 +95,7 @@ SFMLGUIElement* GameStateBase::getTopGUIElement(int X, int Y)
 			return guiObj;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 bool GameStateBase::pointCollided(SFMLGUIElement* target, int X, int Y)
@@ -106,7 +107,7 @@ bool GameStateBase::pointCollided(SFMLGUIElement* target, int X, int Y)
 void GameStateBase::MouseEvent_Pressed(sf::Mouse::Button button, int x, int y)
 {
 	SFMLGUIElement* guiObj = getTopGUIElement(x, y);
-	if(guiObj != NULL)
+	if(guiObj)
 	{
 		switch(button)
 		{
@@ -126,7 +127,7 @@ void GameStateBase::MouseEvent_Pressed(sf::Mouse::Button button, int x, int y)
 void GameStateBase::MouseEvent_Released(sf::Mouse::Button button, int x, int y)
 {
 	SFMLGUIElement* guiObj = getTopGUIElement(x, y);
-	if(guiObj != NULL)
+	if(guiObj)
 	{
 		switch(button)
 		{
@@ -170,12 +171,19 @@ void GameStateBase::CleanupGUIElements(void)
 	}
 	m_GUIElements.clear();
 }
-/*
-void GameStateBase::CleanupMouseListeners(void)
+
+const std::vector<std::unique_ptr<sf::Drawable>>& GameStateBase::getDisplayList() const
 {
-	for(int i = 0; i<MOUSEEVENTCOUNT; i++)
-	{
-		m_mouseListeners[i].clear();
-	}
+	return m_displayList;
 }
-*/
+
+const std::vector<SFMLGUIElement*>& GameStateBase::getGUIElements() const
+{
+	return m_GUIElements;
+}
+
+void GameStateBase::Cleanup()
+{
+	m_GUIElements.clear();
+	m_displayList.clear();
+}

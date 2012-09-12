@@ -17,12 +17,12 @@ GameState_Game1::~GameState_Game1(void)
 
 void GameState_Game1::OnAwake(void)
 {
-	sf::CircleShape* circle = new sf::CircleShape(150.0f);
+	std::unique_ptr<sf::CircleShape> circle(new sf::CircleShape(150.0f));
 	circle->setPosition(sf::Vector2f(400,300));
 	circle->setFillColor(sf::Color::Yellow);
 	circle->setOutlineThickness(2.0f);
 	circle->setOutlineColor(sf::Color::White);
-	m_displayList.push_back(circle);
+	addDrawable(std::move(circle));
 }
 
 void GameState_Game1::OnUpdate(void)
@@ -31,7 +31,7 @@ void GameState_Game1::OnUpdate(void)
 
 void GameState_Game1::OnCleanup(void)
 {
-	GameStateBase::CleanupDisplayList();
+	GameStateBase::Cleanup();
 }
 
 void GameState_Game1::OnSuspend(void)

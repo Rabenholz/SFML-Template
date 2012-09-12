@@ -17,12 +17,12 @@ GameState_PauseMenu::~GameState_PauseMenu(void)
 
 void GameState_PauseMenu::OnAwake(void)
 {
-	sf::RectangleShape* rect = new sf::RectangleShape(sf::Vector2f(600.0f, 200.0f));
+	std::unique_ptr<sf::RectangleShape> rect(new sf::RectangleShape(sf::Vector2f(600.0f, 200.0f)));
 	rect->setPosition(sf::Vector2f(100.0f, 100.0f));
 	rect->setFillColor(sf::Color::White);
 	rect->setOutlineThickness(5.0f);
 	rect->setOutlineColor(sf::Color::Red);
-	m_displayList.push_back(rect);
+	addDrawable(std::move(rect));
 }
 
 void GameState_PauseMenu::OnUpdate(void)
@@ -36,7 +36,7 @@ void GameState_PauseMenu::OnRender(sf::RenderTarget& target)
 
 void GameState_PauseMenu::OnCleanup(void)
 {
-	GameStateBase::CleanupDisplayList();
+	GameStateBase::Cleanup();
 }
 
 void GameState_PauseMenu::OnSuspend(void)

@@ -7,22 +7,21 @@ class SFMLButton :
 {
 public:
 	SFMLButton(void);
-	SFMLButton(sf::Sprite* unpressedSprite);
-	SFMLButton(sf::Sprite* unpressedSprite, sf::Sprite* pressedSprite);
+	SFMLButton(sf::Sprite unpressedSprite);
+	SFMLButton(sf::Sprite unpressedSprite, sf::Sprite pressedSprite);
 	virtual ~SFMLButton(void);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual sf::FloatRect getLocalBounds(void) const;
 	virtual sf::FloatRect getGlobalBounds(void) const;
 
-	void setUnpressedSprite(sf::Sprite* sprite);
-	void setPressedSprite(sf::Sprite* sprite);
-	sf::Sprite* getUnpressedSprite(void) const;
-	sf::Sprite* getPressedSprite(void) const;
+	void setUnpressedSprite(sf::Sprite sprite);
+	void setPressedSprite(sf::Sprite sprite);
+	sf::Sprite& getUnpressedSprite(void) const;
+	sf::Sprite& getPressedSprite(void) const;
 
 protected:
-	sf::Sprite* m_unpressedSprite;
-	sf::Sprite* m_pressedSprite;
-
+	sf::Sprite m_unpressedSprite;
+	sf::Sprite m_pressedSprite;
 };
 

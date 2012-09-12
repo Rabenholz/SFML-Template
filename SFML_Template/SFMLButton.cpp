@@ -4,19 +4,19 @@
 
 SFMLButton::SFMLButton(void)
 	:SFMLGUIElement(),
-	 m_unpressedSprite(NULL),
-	 m_pressedSprite(NULL)
+	 m_unpressedSprite(sf::Sprite()),
+	 m_pressedSprite(sf::Sprite())
 {
 }
 
-SFMLButton::SFMLButton(sf::Sprite* unpressedSprite)
+SFMLButton::SFMLButton(sf::Sprite unpressedSprite)
 	:SFMLGUIElement(),
 	m_unpressedSprite(unpressedSprite),
-	m_pressedSprite(NULL)
+	m_pressedSprite(sf::Sprite())
 {
 }
 
-SFMLButton::SFMLButton(sf::Sprite* unpressedSprite, sf::Sprite* pressedSprite)
+SFMLButton::SFMLButton(sf::Sprite unpressedSprite, sf::Sprite pressedSprite)
 	:SFMLGUIElement(),
 	m_unpressedSprite(unpressedSprite),
 	m_pressedSprite(pressedSprite)
@@ -25,57 +25,49 @@ SFMLButton::SFMLButton(sf::Sprite* unpressedSprite, sf::Sprite* pressedSprite)
 
 SFMLButton::~SFMLButton(void)
 {
-	delete m_unpressedSprite;
-	delete m_pressedSprite;
 }
 
 void SFMLButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
-	if(m_pressedSprite &&(m_leftPressed || m_middlePressed || m_rightPressed))
-		target.draw(*m_pressedSprite, states);
-	else if(m_unpressedSprite)
-		target.draw(*m_unpressedSprite, states);
+	if(m_leftPressed || m_middlePressed || m_rightPressed)
+		target.draw(m_pressedSprite, states);
+	else
+		target.draw(m_unpressedSprite, states);
 }
 
 sf::FloatRect SFMLButton::getLocalBounds(void) const
 {
-	if(m_pressedSprite &&(m_leftPressed || m_middlePressed || m_rightPressed))
-		return m_pressedSprite->getLocalBounds();
-	else if(m_unpressedSprite)
-		return m_unpressedSprite->getLocalBounds();
+	if(m_leftPressed || m_middlePressed || m_rightPressed)
+		return m_pressedSprite.getLocalBounds();
 	else
-		return sf::FloatRect();
+		return m_unpressedSprite.getLocalBounds();
 }
 
 sf::FloatRect SFMLButton::getGlobalBounds(void) const
 {
-	if(m_pressedSprite &&(m_leftPressed || m_middlePressed || m_rightPressed))
-		return getTransform().transformRect(m_pressedSprite->getGlobalBounds());
-	else if(m_unpressedSprite)
-		return getTransform().transformRect(m_unpressedSprite->getGlobalBounds());
+	if(m_leftPressed || m_middlePressed || m_rightPressed)
+		return getTransform().transformRect(m_pressedSprite.getGlobalBounds());
 	else
-		return sf::FloatRect();
+		return getTransform().transformRect(m_unpressedSprite.getGlobalBounds());
 }
 
-void SFMLButton::setUnpressedSprite(sf::Sprite* sprite)
+void SFMLButton::setUnpressedSprite(sf::Sprite sprite)
 {
-	delete m_unpressedSprite;
 	m_unpressedSprite = sprite;
 }
 
-void SFMLButton::setPressedSprite(sf::Sprite* sprite)
+void SFMLButton::setPressedSprite(sf::Sprite sprite)
 {
-	delete m_pressedSprite;
 	m_pressedSprite = sprite;
 }
 
-sf::Sprite* SFMLButton::getUnpressedSprite(void) const
+sf::Sprite& SFMLButton::getUnpressedSprite(void) const
 {
-	return m_unpressedSprite;
+	return const_cast<sf::Sprite&>(m_unpressedSprite);
 }
 
-sf::Sprite* SFMLButton::getPressedSprite(void) const
+sf::Sprite& SFMLButton::getPressedSprite(void) const
 {
-	return m_pressedSprite;
+	return const_cast<sf::Sprite&>(m_pressedSprite);
 }
