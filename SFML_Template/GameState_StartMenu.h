@@ -28,6 +28,7 @@ public:
 	void nextFrameAnim(void) {anim->NextFrame();}
 	void prevFrameAnim(void) {anim->PreviousFrame();}
 	void gotoFrame1(void) {anim->GotoFrame(1);}
+	void rolloverSuccess(void) {printf("Rollover!\n");}
 
 	//SFMLEvent Overrides
 	virtual void OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift);

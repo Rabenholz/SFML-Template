@@ -39,6 +39,18 @@ void GameStateBase::OnResize(int width, int height)
 	m_messages.push_back(new SFMLStateMessage_Resize(width, height));
 }
 
+void GameStateBase::OnMouseButtonPressed(sf::Mouse::Button button, int x, int y)
+{
+	MouseEvent_Pressed(button, x, y);
+}
+void GameStateBase::OnMouseButtonReleased(sf::Mouse::Button button, int x, int y)
+{
+	MouseEvent_Released(button, x, y);
+}
+void GameStateBase::OnMouseMoved(int x, int y)
+{
+	MouseEvent_Moved(x, y);
+}
 SFMLStateMessage* GameStateBase::GetStateMessage(void)
 {
 	if(m_messages.size() == 0)
@@ -159,8 +171,13 @@ void GameStateBase::MouseEvent_Released(sf::Mouse::Button button, int x, int y)
 		}
 	}
 }
-void GameStateBase::MouseEvent_Moved(sf::Mouse::Button button, int x, int y)
+void GameStateBase::MouseEvent_Moved(int x, int y)
 {
+	SFMLGUIElement* guiObj = getTopGUIElement(x, y);
+	if(guiObj)
+	{
+		guiObj->OnMouseRollover();
+	}
 }
 
 void GameStateBase::CleanupGUIElements(void)

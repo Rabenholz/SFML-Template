@@ -71,6 +71,14 @@ void SFMLGUIElement::OnMouseMiddleReleased(void)
 		(*m_MouseMiddleReleasedfunc)();
 }
 
+void SFMLGUIElement::OnMouseRollover(void)
+{
+	if(m_MouseRolloverfunc)
+	{
+		(*m_MouseRolloverfunc)();
+	}
+}
+
 void SFMLGUIElement::OnGlobalMouseLeftReleased(void)
 {
 	m_leftPressed = false;

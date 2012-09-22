@@ -20,6 +20,7 @@ public:
 	void OnMouseRightReleased(void);
 	void OnMouseMiddlePressed(void);
 	void OnMouseMiddleReleased(void);
+	void OnMouseRollover(void);
 
 	//turn to unclicked, even if the button itself isn't released on
 	void OnGlobalMouseLeftReleased(void);
@@ -35,6 +36,7 @@ public:
 	void setMouseLeftClickedFunction(std::shared_ptr<TFunctorBase> func) {m_MouseLeftClickedfunc = func;}
 	void setMouseRightClickedFunction(std::shared_ptr<TFunctorBase> func) {m_MouseRightClickedfunc = func;}
 	void setMouseMiddleClickedFunction(std::shared_ptr<TFunctorBase> func) {m_MouseMiddleClickedfunc = func;}
+	void setMouseRolloverFunction(std::shared_ptr<TFunctorBase> func) {m_MouseRolloverfunc = func;}
 	
 protected:
 	bool m_leftPressed;
@@ -50,5 +52,6 @@ protected:
 	std::shared_ptr<TFunctorBase> m_MouseLeftClickedfunc;
 	std::shared_ptr<TFunctorBase> m_MouseRightClickedfunc;
 	std::shared_ptr<TFunctorBase> m_MouseMiddleClickedfunc;
+	std::shared_ptr<TFunctorBase> m_MouseRolloverfunc;
 };
 

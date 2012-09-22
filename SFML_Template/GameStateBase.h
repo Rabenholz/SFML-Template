@@ -43,6 +43,9 @@ public:
 	//default events that most likely won't be overwritten
 	virtual void OnClose(void);
 	virtual void OnResize(int width, int height);
+	virtual void OnMouseButtonPressed(sf::Mouse::Button button, int x, int y);
+	virtual void OnMouseButtonReleased(sf::Mouse::Button button, int x, int y);
+	virtual void OnMouseMoved(int x, int y);
 
 	struct MouseEvent
 	{
@@ -73,7 +76,7 @@ public:
 	//place them in the virtual overrides for SFMLEvent e.g. OnMouseButtonPressed(...)
 	void MouseEvent_Pressed(sf::Mouse::Button button, int x, int y);
 	void MouseEvent_Released(sf::Mouse::Button button, int x, int y);
-	void MouseEvent_Moved(sf::Mouse::Button button, int x, int y);
+	void MouseEvent_Moved(int x, int y);
 
 	void Cleanup();
 
