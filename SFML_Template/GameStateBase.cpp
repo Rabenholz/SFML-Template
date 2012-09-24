@@ -124,13 +124,13 @@ void GameStateBase::MouseEvent_Pressed(sf::Mouse::Button button, int x, int y)
 		switch(button)
 		{
 		case sf::Mouse::Left:
-			guiObj->OnMouseLeftPressed();
+			guiObj->OnMouseLeftPressed(x, y);
 			break;
 		case sf::Mouse::Right:
-			guiObj->OnMouseRightPressed();
+			guiObj->OnMouseRightPressed(x, y);
 			break;
 		case sf::Mouse::Middle:
-			guiObj->OnMouseMiddlePressed();
+			guiObj->OnMouseMiddlePressed(x, y);
 			break;
 		}
 	}
@@ -144,13 +144,13 @@ void GameStateBase::MouseEvent_Released(sf::Mouse::Button button, int x, int y)
 		switch(button)
 		{
 		case sf::Mouse::Left:
-			guiObj->OnMouseLeftReleased();
+			guiObj->OnMouseLeftReleased(x, y);
 			break;
 		case sf::Mouse::Right:
-			guiObj->OnMouseRightReleased();
+			guiObj->OnMouseRightReleased(x,y);
 			break;
 		case sf::Mouse::Middle:
-			guiObj->OnMouseMiddleReleased();
+			guiObj->OnMouseMiddleReleased(x,y);
 			break;
 		}
 	}
@@ -160,13 +160,13 @@ void GameStateBase::MouseEvent_Released(sf::Mouse::Button button, int x, int y)
 		switch(button)
 		{
 		case sf::Mouse::Left:
-			(*objIt)->OnGlobalMouseLeftReleased();
+			(*objIt)->OnGlobalMouseLeftReleased(x,y);
 			break;
 		case sf::Mouse::Right:
-			(*objIt)->OnGlobalMouseRightReleased();
+			(*objIt)->OnGlobalMouseRightReleased(x,y);
 			break;
 		case sf::Mouse::Middle:
-			(*objIt)->OnGlobalMouseMiddleReleased();
+			(*objIt)->OnGlobalMouseMiddleReleased(x,y);
 			break;
 		}
 	}
@@ -176,7 +176,7 @@ void GameStateBase::MouseEvent_Moved(int x, int y)
 	SFMLGUIElement* guiObj = getTopGUIElement(x, y);
 	if(guiObj)
 	{
-		guiObj->OnMouseRollover();
+		guiObj->OnMouseRollover(x,y);
 	}
 }
 

@@ -14,18 +14,18 @@ public:
 	virtual sf::FloatRect getLocalBounds(void) const = 0;
 	virtual sf::FloatRect getGlobalBounds(void) const = 0;
 
-	void OnMouseLeftPressed(void);
-	void OnMouseLeftReleased(void);
-	void OnMouseRightPressed(void);
-	void OnMouseRightReleased(void);
-	void OnMouseMiddlePressed(void);
-	void OnMouseMiddleReleased(void);
-	void OnMouseRollover(void);
+	void OnMouseLeftPressed(int x, int y);
+	void OnMouseLeftReleased(int x, int y);
+	void OnMouseRightPressed(int x, int y);
+	void OnMouseRightReleased(int x, int y);
+	void OnMouseMiddlePressed(int x, int y);
+	void OnMouseMiddleReleased(int x, int y);
+	void OnMouseRollover(int x, int y);
 
 	//turn to unclicked, even if the button itself isn't released on
-	void OnGlobalMouseLeftReleased(void);
-	void OnGlobalMouseRightReleased(void);
-	void OnGlobalMouseMiddleReleased(void);
+	void OnGlobalMouseLeftReleased(int x, int y);
+	void OnGlobalMouseRightReleased(int x, int y);
+	void OnGlobalMouseMiddleReleased(int x, int y);
 
 	void setMouseLeftPressedFunction(std::shared_ptr<TFunctorBase> func) {m_MouseLeftPressedfunc = func;}
 	void setMouseLeftReleasedFunction(std::shared_ptr<TFunctorBase> func) {m_MouseLeftReleasedfunc = func;}
@@ -42,6 +42,8 @@ protected:
 	bool m_leftPressed;
 	bool m_rightPressed;
 	bool m_middlePressed;
+	int m_mouseX;
+	int m_mouseY;
 
 	std::shared_ptr<TFunctorBase> m_MouseLeftPressedfunc;
 	std::shared_ptr<TFunctorBase> m_MouseLeftReleasedfunc;

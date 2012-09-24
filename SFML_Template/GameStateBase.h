@@ -47,23 +47,6 @@ public:
 	virtual void OnMouseButtonReleased(sf::Mouse::Button button, int x, int y);
 	virtual void OnMouseMoved(int x, int y);
 
-	struct MouseEvent
-	{
-		enum E
-		{
-			LeftPressed = 0,
-			LeftReleased,
-			RightPressed,
-			RightReleased,
-			MiddlePressed,
-			MiddleReleased,
-			RollOver,
-			RollOut,
-			Hover,
-			Count
-		};
-	};
-
 	void addDrawable(std::unique_ptr<sf::Drawable> target);
 	void removeDrawable(int index);
 	void addGUIElement(std::unique_ptr<SFMLGUIElement> target); //must be used so mouse listeners work
