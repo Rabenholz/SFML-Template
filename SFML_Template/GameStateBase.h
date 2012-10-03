@@ -10,6 +10,7 @@
 #include "SFMLButton.h"
 #include "AnimatedSprite.h"
 #include "Functor.h"
+#include "SFMLStateInfo.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <vector>
@@ -24,7 +25,7 @@ public:
 	GameStateBase(void);
 	virtual ~GameStateBase(void);
 
-	virtual void OnAwake(void) {}
+	virtual void OnAwake(const SFMLStateInfo* lStateInfo) {}
 	virtual void OnUpdate(void) {}
 	virtual void OnRender(sf::RenderTarget& target) {drawDisplayList(target);}
 	virtual void OnCleanup(void) {Cleanup();}

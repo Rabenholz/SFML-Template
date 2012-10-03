@@ -7,7 +7,7 @@ public:
 	GameState_Game1(void);
 	virtual ~GameState_Game1(void);
 
-	void OnAwake(void);
+	void OnAwake(const SFMLStateInfo* lStateInfo);
 	void OnUpdate(void);
 	//void OnRender(void);
 	void OnCleanup(void);

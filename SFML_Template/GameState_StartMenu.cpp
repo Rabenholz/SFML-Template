@@ -15,7 +15,7 @@ GameState_StartMenu::~GameState_StartMenu(void)
 {
 }
 
-void GameState_StartMenu::OnAwake(void)
+void GameState_StartMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 {
 	counter = 0;
 	std::unique_ptr<sf::RectangleShape> rect(new sf::RectangleShape());
@@ -96,10 +96,10 @@ void GameState_StartMenu::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool con
 		m_messages.push_back(new SFMLStateMessage_Close());
 		break;
 	case sf::Keyboard::X:
-		m_messages.push_back(new SFMLStateMessage_ChangeState("Game1State"));
+		m_messages.push_back(new SFMLStateMessage_ChangeState("Game1State", nullptr));
 		break;
 	case sf::Keyboard::Z:
-		m_messages.push_back(new SFMLStateMessage_PushState("PauseState"));
+		m_messages.push_back(new SFMLStateMessage_PushState("PauseState", nullptr));
 	}
 }
 

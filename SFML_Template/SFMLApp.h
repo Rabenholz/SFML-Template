@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "SFMLEvent.h"
+#include "SFMLStateInfo.h"
 #include "GameStateBase.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
@@ -26,9 +27,8 @@ public:
 
 	void registerState(GameStateBase::ptr gameState, std::string stateID);
 	void unregisterState(std::string stateID); //can invalidate active states
-	//void changeState(GameStateBase* gameState);
-	void changeState(std::string stateID); //replaces the current state
-	void pushState(std::string stateID);
+	void changeState(std::string stateID, SFMLStateInfo* stateInfo); //replaces the current state
+	void pushState(std::string stateID, SFMLStateInfo* stateInfo);
 	void popState(void);
 	void removeState(std::string stateID);
 

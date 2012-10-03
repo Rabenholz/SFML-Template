@@ -89,6 +89,7 @@
     <ClInclude Include="SFMLButton.h" />
     <ClInclude Include="SFMLEvent.h" />
     <ClInclude Include="SFMLGUIElement.h" />
+    <ClInclude Include="sfmlstateinfo.h" />
     <ClInclude Include="SFMLStateMessage.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteManager.h" />

@@ -15,7 +15,7 @@ GameState_Game1::~GameState_Game1(void)
 {
 }
 
-void GameState_Game1::OnAwake(void)
+void GameState_Game1::OnAwake(const SFMLStateInfo* lStateInfo)
 {
 	std::unique_ptr<sf::CircleShape> circle(new sf::CircleShape(150.0f));
 	circle->setPosition(sf::Vector2f(400,300));
@@ -47,10 +47,10 @@ void GameState_Game1::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control
 	switch(key)
 	{
 	case sf::Keyboard::Escape:
-		m_messages.push_back(new SFMLStateMessage_PushState("PauseState"));
+		m_messages.push_back(new SFMLStateMessage_PushState("PauseState", nullptr));
 		break;
 	case sf::Keyboard::X:
-		m_messages.push_back(new SFMLStateMessage_ChangeState("MenuState"));
+		m_messages.push_back(new SFMLStateMessage_ChangeState("MenuState", nullptr));
 		break;
 	}
 }

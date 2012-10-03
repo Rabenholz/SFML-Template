@@ -15,7 +15,7 @@ GameState_PauseMenu::~GameState_PauseMenu(void)
 {
 }
 
-void GameState_PauseMenu::OnAwake(void)
+void GameState_PauseMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 {
 	std::unique_ptr<sf::RectangleShape> rect(new sf::RectangleShape(sf::Vector2f(600.0f, 200.0f)));
 	rect->setPosition(sf::Vector2f(100.0f, 100.0f));

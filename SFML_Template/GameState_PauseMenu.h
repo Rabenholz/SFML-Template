@@ -7,7 +7,7 @@ public:
 	GameState_PauseMenu(void);
 	virtual ~GameState_PauseMenu(void);
 	
-	void OnAwake(void);
+	void OnAwake(const SFMLStateInfo* lStateInfo);
 	void OnUpdate(void);
 	void OnRender(sf::RenderTarget& target);
 	void OnCleanup(void);

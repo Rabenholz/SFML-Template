@@ -9,7 +9,7 @@ public:
 	GameState_StartMenu(void);
 	virtual ~GameState_StartMenu(void);
 
-	void OnAwake(void);
+	void OnAwake(const SFMLStateInfo* lStateInfo);
 	void OnUpdate(void);
 	//void OnRender(void);
 	void OnCleanup(void);

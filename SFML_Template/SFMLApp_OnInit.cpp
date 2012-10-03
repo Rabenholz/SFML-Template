@@ -35,6 +35,6 @@ bool SFMLApp::OnInit(void)
 	registerState(std::move(menuState), "MenuState");
 	registerState(std::move(game1State), "Game1State");
 	registerState(std::move(pauseState), "PauseState");
-	changeState("MenuState");
+	changeState("MenuState", nullptr);
 	return true;
 }
