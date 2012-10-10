@@ -2,7 +2,8 @@
 #include "GameState_Game1.h"
 
 
-GameState_Game1::GameState_Game1(void)
+GameState_Game1::GameState_Game1(const sf::Window& window)
+	:GameStateBase(window)
 {
 	m_transparent = false;
 	m_allowSubUpdate = false;

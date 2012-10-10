@@ -29,9 +29,9 @@ bool SFMLApp::OnInit(void)
 	fontManager.addFontFromFile("impact.ttf", "Impact");
 
 	//test - register gameStates
-	std::unique_ptr<GameState_StartMenu> menuState(new GameState_StartMenu());
-	std::unique_ptr<GameState_Game1> game1State(new GameState_Game1());
-	std::unique_ptr<GameState_PauseMenu> pauseState(new GameState_PauseMenu());
+	std::unique_ptr<GameState_StartMenu> menuState(new GameState_StartMenu(m_mainWindow));
+	std::unique_ptr<GameState_Game1> game1State(new GameState_Game1(m_mainWindow));
+	std::unique_ptr<GameState_PauseMenu> pauseState(new GameState_PauseMenu(m_mainWindow));
 	registerState(std::move(menuState), "MenuState");
 	registerState(std::move(game1State), "Game1State");
 	registerState(std::move(pauseState), "PauseState");

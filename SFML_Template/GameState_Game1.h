@@ -4,7 +4,7 @@ class GameState_Game1 :
 	public GameStateBase
 {
 public:
-	GameState_Game1(void);
+	GameState_Game1(const sf::Window& window);
 	virtual ~GameState_Game1(void);
 
 	void OnAwake(const SFMLStateInfo* lStateInfo);

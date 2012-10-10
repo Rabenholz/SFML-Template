@@ -2,7 +2,8 @@
 #include "GameState_PauseMenu.h"
 
 
-GameState_PauseMenu::GameState_PauseMenu(void)
+GameState_PauseMenu::GameState_PauseMenu(const sf::Window& window)
+	:GameStateBase(window)
 {
 	m_transparent = true;
 	m_allowSubUpdate = false;

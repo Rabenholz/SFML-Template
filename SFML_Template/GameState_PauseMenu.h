@@ -4,7 +4,7 @@ class GameState_PauseMenu :
 	public GameStateBase
 {
 public:
-	GameState_PauseMenu(void);
+	GameState_PauseMenu(const sf::Window& window);
 	virtual ~GameState_PauseMenu(void);
 	
 	void OnAwake(const SFMLStateInfo* lStateInfo);

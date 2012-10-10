@@ -6,7 +6,7 @@ class GameState_StartMenu :
 	public GameStateBase
 {
 public:
-	GameState_StartMenu(void);
+	GameState_StartMenu(const sf::Window& window);
 	virtual ~GameState_StartMenu(void);
 
 	void OnAwake(const SFMLStateInfo* lStateInfo);

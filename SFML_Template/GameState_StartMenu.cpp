@@ -2,7 +2,8 @@
 #include "GameState_StartMenu.h"
 
 
-GameState_StartMenu::GameState_StartMenu(void)
+GameState_StartMenu::GameState_StartMenu(const sf::Window& window)
+	:GameStateBase(window)
 {
 	m_transparent = false;
 	m_allowSubUpdate = false;
@@ -29,7 +30,7 @@ void GameState_StartMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 	sprite->setTextureRect(sf::IntRect(40,40,80,80));
 	sprite->setPosition(sf::Vector2f(100.0f, 300.0f));
 	addDrawable(std::move(sprite));
-	std::unique_ptr<SFMLButton> button(new SFMLButton());
+	std::unique_ptr<SFMLButton> button(new SFMLButton(m_window));
 	button->setPosition(sf::Vector2f(200.0f, 200.0f));
 	sf::Sprite unpressedSprite(SpriteManager::getInstance().getSprite("TicTacToeX_Cut"));
 	sf::Sprite pressedSprite(TextureManager::getInstance().getTexture("TicTacToeO"));
