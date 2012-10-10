@@ -19,7 +19,7 @@ SFMLGUIElement::~SFMLGUIElement(void)
 
 sf::Vector2f SFMLGUIElement::getLocalPoint(float x, float y) const
 {
-	sf::FloatRect bounds(getLocalBounds());
+	sf::FloatRect bounds(getGlobalBounds());
 	if(!bounds.contains(sf::Vector2f(x,y)))
 	{
 		throw std::out_of_range("Point outside GUIElement");
