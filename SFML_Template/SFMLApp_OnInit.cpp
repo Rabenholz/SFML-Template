@@ -26,7 +26,7 @@ bool SFMLApp::OnInit(void)
 	soundManager.addSoundBufferFromFile("assets/sounds/bro.wav", "bro");
 
 	FontManager& fontManager = FontManager::getInstance();
-	fontManager.addFontFromFile("/assets/fonts/impact.ttf", "Impact");
+	fontManager.addFontFromFile("assets/fonts/impact.ttf", "Impact");
 
 	//test - register gameStates
 	std::unique_ptr<GameState_StartMenu> menuState(new GameState_StartMenu(m_mainWindow));

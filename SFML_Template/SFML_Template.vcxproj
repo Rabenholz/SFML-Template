@@ -49,11 +49,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(VSInstallDir)\VC\lib\sfml-audio-d.lib;$(VSInstallDir)\VC\lib\sfml-graphics-d.lib;$(VSInstallDir)\VC\lib\sfml-main-d.lib;$(VSInstallDir)\VC\lib\sfml-network-d.lib;$(VSInstallDir)\VC\lib\sfml-system-d.lib;$(VSInstallDir)\VC\lib\sfml-window-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\lib\sfml-audio-d.lib;$(ProjectDir)\lib\sfml-graphics-d.lib;$(ProjectDir)\lib\sfml-main-d.lib;$(ProjectDir)\lib\sfml-network-d.lib;$(ProjectDir)\lib\sfml-system-d.lib;$(ProjectDir)\lib\sfml-window-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,13 +65,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>$(VSInstallDir)\VC\lib\sfml-audio.lib;$(VSInstallDir)\VC\lib\sfml-graphics.lib;$(VSInstallDir)\VC\lib\sfml-main.lib;$(VSInstallDir)\VC\lib\sfml-network.lib;$(VSInstallDir)\VC\lib\sfml-system.lib;$(VSInstallDir)\VC\lib\sfml-window.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\lib\sfml-audio.lib;$(ProjectDir)\lib\sfml-graphics.lib;$(ProjectDir)\lib\sfml-main.lib;$(ProjectDir)\lib\sfml-network.lib;$(ProjectDir)\lib\sfml-system.lib;$(ProjectDir)\lib\sfml-window.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

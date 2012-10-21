@@ -3,8 +3,7 @@ SFML-Template
 A game template that I'm developing, based on the SFML API.
 
 This project uses SFML 2.0.
+SFML libraries are compiled as 32-bit .dlls with 64-bit Windows 7
 
-This template doesn't include SFML, so you'll have to download and install it on your own.
-It can be found at:
-
+To learn more about SFML visit:
 http://www.sfml-dev.org/
