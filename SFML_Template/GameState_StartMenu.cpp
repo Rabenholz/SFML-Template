@@ -42,8 +42,12 @@ void GameState_StartMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 	button->setMouseRolloverFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this, &GameState_StartMenu::rolloverSuccess));
 	std::unique_ptr<SFMLButton> buttonCopy(new SFMLButton(*button));
 	buttonCopy->setPosition(20,20);
+	std::unique_ptr<SFMLButton> buttonAssigned(new SFMLButton(m_window, pressedSprite));
+	*buttonAssigned = *buttonCopy;
+	buttonAssigned->setPosition(80,20);
 	addGUIElement(std::move(button));
 	addGUIElement(std::move(buttonCopy));
+	addGUIElement(std::move(buttonAssigned));
 	
 	bro.setBuffer(SoundManager::getInstance().getSoundBuffer("bro"));
 	sf::Sprite sprite1(TextureManager::getInstance().getTexture("TicTacToeX"));
