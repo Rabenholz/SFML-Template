@@ -66,7 +66,7 @@ bool TextureManager::addTextureFromFile(const std::string& fileName, const std::
 	sf::Texture texture;
 	if(texture.loadFromFile(fileName))
 	{
-		if(!addTexture(texture, textureID)) //something bad happened, delete the texture to prevent mem leak
+		if(!addTexture(texture, textureID))
 		{
 			printf("Failed to add \"%s\" to manager\n", fileName.c_str());
 			return false;
