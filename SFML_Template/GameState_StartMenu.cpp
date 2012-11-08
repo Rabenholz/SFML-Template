@@ -36,10 +36,11 @@ void GameState_StartMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 	sf::Sprite pressedSprite(TextureManager::getInstance().getTexture("TicTacToeO"));
 	button->setUnpressedSprite(unpressedSprite);
 	button->setPressedSprite(pressedSprite);
-	button->setMouseLeftPressedFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this,&GameState_StartMenu::playAnim));
-	button->setMouseLeftReleasedFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this,&GameState_StartMenu::resetAnim));
-	button->setMouseLeftClickedFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this,&GameState_StartMenu::playBroSound));
-	button->setMouseRolloverFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this, &GameState_StartMenu::rolloverSuccess));
+	button->addMouseLeftPressedFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this,&GameState_StartMenu::playAnim));
+	button->addMouseLeftPressedFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this,&GameState_StartMenu::printPressed));
+	button->addMouseLeftReleasedFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this,&GameState_StartMenu::resetAnim));
+	button->addMouseLeftClickedFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this,&GameState_StartMenu::playBroSound));
+	button->addMouseRolloverFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this, &GameState_StartMenu::rolloverSuccess));
 	std::unique_ptr<SFMLButton> buttonCopy(new SFMLButton(*button));
 	buttonCopy->setPosition(20,20);
 	std::unique_ptr<SFMLButton> buttonAssigned(new SFMLButton(m_window, pressedSprite));
