@@ -301,5 +301,5 @@ std::vector<std::shared_ptr<TFunctorBase>>::iterator SFMLGUIElement::getFunction
 		std::vector<std::shared_ptr<TFunctorBase>>& vec, TFunctorBase& func)
 {
 	return std::find_if(vec.begin(), vec.end(), 
-		[&](std::shared_ptr<TFunctorBase> a) {return (a.get() == &func);});
+		[&](std::shared_ptr<TFunctorBase> a) {return a->equals(func);});
 }
