@@ -41,7 +41,7 @@ void GameState_StartMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 	button->addMouseLeftReleasedFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this,&GameState_StartMenu::resetAnim));
 	button->addMouseLeftClickedFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this,&GameState_StartMenu::playBroSound));
 	button->addMouseRolloverFunction(std::make_shared<TFunctor<GameState_StartMenu>>(this, &GameState_StartMenu::rolloverSuccess));
-	TFunctor<GameState_StartMenu> rolloverFunc(this, &GameState_StartMenu::rolloverSuccess));
+	TFunctor<GameState_StartMenu> rolloverFunc(this, &GameState_StartMenu::rolloverSuccess);
 	button->removeMouseRolloverFunction(rolloverFunc);
 	std::unique_ptr<SFMLButton> buttonCopy(new SFMLButton(*button));
 	buttonCopy->setPosition(20,20);
