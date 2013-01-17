@@ -30,7 +30,7 @@ void GameState_StartMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 	sprite->setTextureRect(sf::IntRect(40,40,80,80));
 	sprite->setPosition(sf::Vector2f(100.0f, 300.0f));
 	addDrawable(std::move(sprite));
-	std::unique_ptr<SFMLButton> button(new SFMLButton(m_window));
+	std::unique_ptr<SFMLButton> button(new SFMLButton(*m_window));
 	button->setPosition(sf::Vector2f(200.0f, 200.0f));
 	sf::Sprite unpressedSprite(SpriteManager::getInstance().getSprite("TicTacToeX_Cut"));
 	sf::Sprite pressedSprite(TextureManager::getInstance().getTexture("TicTacToeO"));
@@ -45,7 +45,7 @@ void GameState_StartMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 	button->removeMouseRolloverFunction(rolloverFunc);
 	std::unique_ptr<SFMLButton> buttonCopy(new SFMLButton(*button));
 	buttonCopy->setPosition(20,20);
-	std::unique_ptr<SFMLButton> buttonAssigned(new SFMLButton(m_window, pressedSprite));
+	std::unique_ptr<SFMLButton> buttonAssigned(new SFMLButton(*m_window, pressedSprite));
 	*buttonAssigned = *buttonCopy;
 	buttonAssigned->setPosition(80,20);
 	addGUIElement(std::move(button));
